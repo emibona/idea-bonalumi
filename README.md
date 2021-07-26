@@ -1,3 +1,114 @@
+Programa
+  CALENDARIO
+
+1. Nivelación
+ 
+ 
+Clase 0
+VER PRESENTACIÓN
+  
+Clase Complementaria de Nivelación, this y git
+ 
+2. Instalación y configuración del entorno
+ 
+ 
+DESAFÍO
+Desafío: Crear la App utilizando el CLI
+  
+APROBADO
+Clase Complementaria de Instalación dudas y Github
+ 
+LUNES 26/07 20:30HS - SE VALORA LA PROXÍMA CLASE
+3. JSX & transpiling
+ 
+HOY 20:30
+ 
+DESAFÍO - EXPIRA EL LUNES 02/08/2021 23:59HS
+Desafío: Menú e-commerce
+  
+ENTREGAR
+MIÉRCOLES 28/07 20:30HS - VALORACIÓN REQUERIDA
+4. Componentes I
+  
+DESAFÍO - EXPIRA EL MIÉRCOLES 04/08/2021 23:59HS
+Desafío: Estilos y Home
+  
+ENTREGAR
+LUNES 02/08 20:30HS - SE VALORA LA PROXÍMA CLASE
+5. Componentes II
+  
+DESAFÍO - EXPIRA EL LUNES 09/08/2021 23:59HS
+Desafío: Contador con botón
+  
+ENTREGAR
+MIÉRCOLES 04/08 20:30HS - VALORACIÓN REQUERIDA
+6. Promises, asincronía y MAP
+  
+🔒 Una vez que pases la clase 5 te vamos a ofrecer un increíble beneficio.
+DESAFÍO - EXPIRA EL MIÉRCOLES 11/08/2021 23:59HS
+Desafío: Catálogo con MAPS y Promises
+  
+ENTREGAR
+LUNES 09/08 20:30HS - SE VALORA LA PROXÍMA CLASE
+7. Consumiendo APIs
+  
+DESAFÍO - EXPIRA EL LUNES 16/08/2021 23:59HS
+Desafío: Detalle de Producto
+  
+ENTREGAR
+MIÉRCOLES 11/08 20:30HS - VALORACIÓN REQUERIDA
+8. Routing y Navegación
+  
+PREENTREGA - EXPIRA EL MIÉRCOLES 18/08/2021 23:59HS
+Primera Entrega del Proyecto Final
+  
+ENTREGAR
+LUNES 16/08 20:30HS - SE VALORA LA PROXÍMA CLASE
+9. Eventos
+  
+DESAFÍO - EXPIRA EL LUNES 23/08/2021 23:59HS
+Desafío: Sincronizar counter
+  
+ENTREGAR
+MIÉRCOLES 18/08 20:30HS - VALORACIÓN REQUERIDA
+10. Context
+  
+🔒 Una vez que pases la clase 9 te vamos a ofrecer un increíble beneficio.
+DESAFÍO - EXPIRA EL MIÉRCOLES 25/08/2021 23:59HS
+Desafío: CartContext
+  
+ENTREGAR
+LUNES 23/08 20:30HS - SE VALORA LA PROXÍMA CLASE
+11. Técnicas de rendering
+  
+DESAFÍO - EXPIRA EL LUNES 30/08/2021 23:59HS
+Desafío: Cart View
+  
+ENTREGAR
+MIÉRCOLES 25/08 20:30HS - VALORACIÓN REQUERIDA
+12. Utilizando Firebase
+  
+DESAFÍO - EXPIRA EL MIÉRCOLES 01/09/2021 23:59HS
+Desafío: Item Collection
+  
+ENTREGAR
+LUNES 30/08 20:30HS - SE VALORA LA PROXÍMA CLASE
+13. Firebase II
+  
+DESAFÍO - EXPIRA EL LUNES 06/09/2021 23:59HS
+Desafío: Item Collection II
+  
+ENTREGAR
+MIÉRCOLES 01/09 20:30HS - VALORACIÓN REQUERIDA
+14. Workshop
+  
+🔒 Una vez que pases la clase 13 te vamos a ofrecer un increíble beneficio.
+PROYECTO FINAL - EXPIRA EL MARTES 21/09/2021 23:59HS
+Entrega del Proyecto Final
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
