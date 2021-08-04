@@ -1,8 +1,22 @@
 import React from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
+import ItemCount from './ItemCount';
+import Swal from 'sweetalert2';
 
 const ItemListContainer = ({ greeting }) => {
+  
+  const onAdd = ()=> {
+    //alert('Producto agregado');
+    Swal.fire({
+      title: 'Item Agregado',
+      text: `Se agregó el producto a su carrito`,
+      icon: 'success',
+      confirmButtonText: 'Aceptar'
+    })
+  }
+
   return (
+    <div>
     <Container>
       <Row>
         <Col>
@@ -10,40 +24,16 @@ const ItemListContainer = ({ greeting }) => {
             <Card.Body>
               <Card.Title></Card.Title>
               <Card.Text>
-                <h2>{greeting}</h2>
+                {greeting}
               </Card.Text>
             </Card.Body>
           </Card>
         </Col>
-      </Row>
-      <br />
-      <Row>
-        <Col>
-          <Card style={{ Width: "90%" }}>
-            <Card.Body>
-              <Card.Title>Producto 1</Card.Title>
-              <Card.Text></Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card style={{ Width: "90%" }}>
-            <Card.Body>
-              <Card.Title>Producto 2</Card.Title>
-              <Card.Text></Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card style={{ Width: "90%" }}>
-            <Card.Body>
-              <Card.Title>Producto 3</Card.Title>
-              <Card.Text></Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+      </Row>      
     </Container>
+    <br></br>
+    <ItemCount stock="5" initial="1" onAdd={onAdd} />
+  </div>   
   );
 };
 

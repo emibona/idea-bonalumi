@@ -7,7 +7,7 @@ const CartWidget = () => {
     <div>
         <div className="dot">
             <FontAwesomeIcon icon={faShoppingCart} />
-        </div> PerfuLULU
+        </div> PerfuBONA
     </div>)
 };
 
