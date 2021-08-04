@@ -5,11 +5,10 @@ import Swal from 'sweetalert2';
 
 const ItemListContainer = ({ greeting }) => {
   
-  const onAdd = ()=> {
-    //alert('Producto agregado');
+  function onAdd (producto,cantidad) {
     Swal.fire({
       title: 'Item Agregado',
-      text: `Se agregó el producto a su carrito`,
+      text: `Se agregaron ${cantidad} unid. de ${producto} a su carrito`,
       icon: 'success',
       confirmButtonText: 'Aceptar'
     })
