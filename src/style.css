@@ -8,3 +8,23 @@
   top: 50%;
   left: 50%;
 }
+
+.h3{
+  font-size: 15px;
+}
+
+.linea
+{
+  display: inline;    
+}
+
+.input{
+  width: 60px;  
+  padding: 5px;
+  text-align: center;
+}
+.button{
+  text-align: center;
+  width: 20px;
+  padding: 5px;
+}
