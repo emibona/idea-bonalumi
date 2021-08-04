@@ -28,15 +28,6 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }
   };
 
-  const onAddParche = () => {
-    Swal.fire({
-      title: 'Item Agregado',
-      text: `Se agregaron ${count} unid. de ${producto} a su carrito`,
-      icon: 'success',
-      confirmButtonText: 'Aceptar'
-    })
-  }
-
   return (
     <div>
       <Container>
@@ -53,7 +44,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
                   <Button variant="primary" className="linea button" size="sm" onClick={incrementar}>+</Button>
                   <hr></hr>
                   <div className="d-grid gap-2">
-                  <Button variant="primary" onClick={onAddParche}>Agregar</Button>
+                  <Button variant="primary" onClick={() => onAdd(producto,count)}>Agregar</Button>
                   </div>
                 </Card.Text>
               </Card.Body>
