@@ -1,0 +1,20 @@
+const productos = [
+    { id: 1, title: 'AXE MARINE 150 ml', description: 'Desodorante masculino', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/marine.jpg', stock: 10, categoriaId: 1, categoriaNombre: 'Desodorantes'},
+    { id: 2, title: 'AXE MUSK 150 ml', description: 'Desodorante masculino', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/musk.jpg', stock: 7, categoriaId: 1, categoriaNombre: 'Desodorantes'},
+    { id: 3, title: 'AXE DARK 190 ml', description: 'Desodorante masculino', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/dark.jpg', stock: 6, categoriaId: 1, categoriaNombre: 'Desodorantes'},
+    { id: 4, title: 'AXE APOLLO X 150', description: 'Desodorante masculino', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/apollo.jpg', stock: 6, categoriaId: 1, categoriaNombre: 'Desodorantes'},
+    { id: 5, title: 'JABON 1', description: 'JABON Antibacterial Cuida & Protege', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/jabon.jpg', stock: 10, categoriaId: 2, categoriaNombre: 'Jabones'},
+    { id: 6, title: 'JABON 2', description: 'JABON Antibacterial Cuida & Protege', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/jabon.jpg', stock: 7, categoriaId: 2, categoriaNombre: 'Jabones'},
+    { id: 7, title: 'JABON 3', description: 'JABON Antibacterial Cuida & Protege', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/jabon.jpg', stock: 6, categoriaId: 2, categoriaNombre: 'Jabones'},
+    { id: 8, title: 'JABON 4', description: 'JABON Antibacterial Cuida & Protege', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/jabon.jpg', stock: 6, categoriaId: 2, categoriaNombre: 'Jabones'},
+    { id: 9, title: 'DENTAL 1', description: 'Especialmente formulado para el alivio de la sensibilidad dental. Ingresá y conocé las instrucciones de uso y más información. Causas del Dolor. Aliento Fresco.', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/dental.jpg', stock: 10, categoriaId: 3, categoriaNombre: 'Cuidado Dental'},
+    { id: 10, title: 'DENTAL 2', description: 'Especialmente formulado para el alivio de la sensibilidad dental. Ingresá y conocé las instrucciones de uso y más información. Causas del Dolor. Aliento Fresco.', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/dental.jpg', stock: 7, categoriaId: 3, categoriaNombre: 'Cuidado Dental'},
+    { id: 11, title: 'DENTAL 3', description: 'Especialmente formulado para el alivio de la sensibilidad dental. Ingresá y conocé las instrucciones de uso y más información. Causas del Dolor. Aliento Fresco.', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/dental.jpg', stock: 6, categoriaId: 3, categoriaNombre: 'Cuidado Dental'},
+    { id: 12, title: 'DENTAL 4', description: 'Especialmente formulado para el alivio de la sensibilidad dental. Ingresá y conocé las instrucciones de uso y más información. Causas del Dolor. Aliento Fresco.', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/dental.jpg', stock: 6, categoriaId: 3, categoriaNombre: 'Cuidado Dental'},
+    { id: 13, title: 'BOTIQUIN 1', description: 'Producto de Botiquin para cuidado', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/botiquin.jpg', stock: 10, categoriaId: 4, categoriaNombre: 'Botiquin'},
+    { id: 14, title: 'BOTIQUIN 2', description: 'Producto de Botiquin para cuidado', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/botiquin.jpg', stock: 7, categoriaId: 4, categoriaNombre: 'Botiquin'},
+    { id: 15, title: 'BOTIQUIN 3', description: 'Producto de Botiquin para cuidado', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/botiquin.jpg', stock: 6, categoriaId: 4, categoriaNombre: 'Botiquin'},
+    { id: 16, title: 'BOTIQUIN 4', description: 'Producto de Botiquin para cuidado', price: 125.95, pictureUrl: 'https://www.coinsasalud.com.ar/images/botiquin.jpg', stock: 6, categoriaId: 4, categoriaNombre: 'Botiquin'}
+];
+
+export default productos;
