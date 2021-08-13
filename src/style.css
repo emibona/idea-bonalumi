@@ -28,3 +28,18 @@
   width: 20px;
   padding: 5px;
 }
+
+.button-detail{
+  text-align: center;
+  width: 300px;
+  padding: 5px;
+}
+
+.div-img-datos{
+ text-align: center;
+}
+
+.error-page {
+  text-align: center;
+  border: 2px solid red;
+}
