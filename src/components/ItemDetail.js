@@ -33,7 +33,7 @@ const ItemDetail = ({ initial, onAdd, item }) => {
 
     return (
         <>
-        <Col xs={12} key={producto.id}>
+        <Col xs={12}>
                 <Card>
                     <Card.Body>
                         <Card.Title>Información del Producto</Card.Title>

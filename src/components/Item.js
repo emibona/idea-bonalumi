@@ -34,7 +34,7 @@ const Item = ({ stock, initial, onAdd, item }) => {
 
     return (
         <>
-            <Col xs={3} key={producto.id}>
+            <Col xs={3}>
                 <Card>
                     <Card.Body>
                         <Card.Title></Card.Title>
