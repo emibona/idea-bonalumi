@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink,useParams } from "react-router-dom";
 import Item from "./Item";
 import productos from "../api/Productos";
-import { Container, Row } from "react-bootstrap";
-import Swal from "sweetalert2";
+import { Container, Row, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const ItemList = () => {
   const { categoriaId } = useParams();
   const [resultProductos, setResultProductos] = useState([]);
 
-  function onAdd(id, producto, cantidad) {
-    Swal.fire({
-      title: "Item Agregado",
-      text: `Se agregaron ${cantidad} unid. de ${producto} a su carrito`,
-      icon: "success",
-      confirmButtonText: "Aceptar",
-    });
+  function mostrarCarrito(producto, cantidad) {
+    console.log('producto',producto);
+    console.log('cantidad',cantidad);
+    //aca voy a controlar si tengo productos en el carrito para poder esconderlo o mostrarlo
+    document.getElementById('div-ir-carrito').style.display = 'inline';    
   }
 
   const getProductos = () =>
@@ -51,10 +50,13 @@ const ItemList = () => {
 
   return (
     <div>
+      <div id="div-ir-carrito" style={{'display':'none'}}>
+        <Button variant="warning"><NavLink to={ `/carrito` }><FontAwesomeIcon icon={faShoppingCart} />Termina tu Compra</NavLink></Button>
+      </div>
       <Container>
         <Row>
           {resultProductos.map((producto) => (
-            <Item key={producto.id} item={producto} onAdd={onAdd} initial={1} />
+            <Item key={producto.id} item={producto} mostrarCarrito={mostrarCarrito} initial={1} />
           ))}
         </Row>
       </Container>

@@ -1,35 +1,35 @@
 import React, { useState } from "react";
-import { Card, Col, Form, Button } from "react-bootstrap";
+import { NavLink } from 'react-router-dom';
+import ItemCount from "./ItemCount";
+import { Card, Col, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-const ItemDetail = ({ initial, onAdd, item }) => {   
+const ItemDetail = ({ initial, item }) => {   
     const [count, setCount] = useState(parseInt(initial));
-    //const [disponible, setDisponible] = useState(parseInt(item.stock));
-    //const [producto, setProducto] = useState(item);
     const [disponible] = useState(parseInt(item.stock));
     const [producto] = useState(item); 
+    const [pedido, setPedido] = useState([
+        {producto : { },
+        cantidad : 0}
+    ]);
 
-
-    const incrementar = () => {
-        if (count < disponible) {
-            setCount(count + 1);
-        } else {
-            Swal.fire({
-                title: 'Disponible',
-                text: 'Ha superado la cantidad disponible',
-                icon: 'error',
-                confirmButtonText: 'Aceptar'
-            })
-        }
-    };
-
-    const decrementar = () => {
-        if (count > 1) {
-            setCount(count - 1);
-        } else {
-            return false;
-        }
-    };
+    function onAdd(producto, cantidad) {
+        console.log('producto',producto);
+        console.log('cantidad',cantidad);
+        setPedido([
+            {producto : producto,
+            cantidad : cantidad}]);       
+        Swal.fire({
+            title: 'Item Agregado',
+            text: `Se agregaron ${cantidad} unid. de ${producto.title} a su carrito`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
+        document.getElementById('div-count').style.display = 'none'
+        document.getElementById('div-terminar-compra').style.display = 'inline'
+    }
 
     return (
         <>
@@ -46,14 +46,16 @@ const ItemDetail = ({ initial, onAdd, item }) => {
                             <div className="div-img-datos">
                             <img src={producto.pictureUrl} width="200" height="200" alt={producto.title} />
                             <br></br>
-                            <Button variant="primary" className="linea button" size="sm" onClick={decrementar}>-</Button>
-                            <Form.Control type="text" className="linea input" size="sm" value={count} readOnly="readonly" min="0" />
-                            <Button variant="primary" className="linea button" size="sm" onClick={incrementar}>+</Button>
+                            <div id="div-count" style={{'display':'inline','textAlign':'center'}}>
+                                <ItemCount initial={1} item={producto} onAdd={onAdd}/>
+                            </div>
+                            <div id="div-terminar-compra" style={{'display':'none'}}>
+                                <hr></hr>
+                                <Button variant="warning"><NavLink to={ `/carrito` }><FontAwesomeIcon icon={faShoppingCart} />Termina tu Compra</NavLink></Button>
+                                <br></br>
+                            </div>
                             <hr></hr>
-                            </div>
-                            <div>
-                                <Button variant="primary" className="button-detail" onClick={() => onAdd(producto.id,producto.title, count)}>Agregar</Button>
-                            </div>
+                            </div>                            
                         </Card.Text>
                     </Card.Body>
                 </Card>
