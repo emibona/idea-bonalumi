@@ -22,9 +22,9 @@ const ItemDetailContainer = () => {
     const getProducto = () =>
         new Promise((resolve, reject) => {
             setTimeout(() => {
+                setResultProductos([]);
                 if (productos.length > 0) {
-                    const productoDetalle = productos.filter((producto)=> producto.id === parseInt(productoId));
-                    console.log(productoDetalle);
+                    const productoDetalle = productos.filter(producto => producto.id === parseInt(productoId));
                     resolve(productoDetalle);
                 } else {
                     reject('No se encontraron productos');
@@ -44,7 +44,7 @@ const ItemDetailContainer = () => {
             <Container>
                 <Row>
                     {ResultProductos.map((producto) =>
-                        <ItemDetail item={producto} onAdd={onAdd} initial={1} />
+                        <ItemDetail key={producto.id} item={producto} onAdd={onAdd} initial={1} />
                     )}
                 </Row>
             </Container>
