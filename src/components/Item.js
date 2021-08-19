@@ -1,36 +1,31 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-import { Card, Col, Form, Button } from "react-bootstrap";
+import { NavLink } from 'react-router-dom';
+import { Card, Col, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
+import ItemCount from "./ItemCount";
 
-const Item = ({ stock, initial, onAdd, item }) => {
+const Item = ({ initial, mostrarCarrito, item }) => {
     const [count, setCount] = useState(parseInt(initial));
-    //const [disponible, setDisponible] = useState(parseInt(item.stock));
-    //const [producto, setProducto] = useState(item);
     const [disponible] = useState(parseInt(item.stock));
     const [producto] = useState(item);
+    const [pedido, setPedido] = useState([
+        {producto : { },
+        cantidad : 0}
+    ]);
 
+    function onAdd(producto, cantidad) {
+        setPedido([
+            {producto : producto,
+            cantidad : cantidad}]);
+        Swal.fire({
+          title: "Item Agregado",
+          text: `Se agregaron ${cantidad} unid. de ${producto.title} a su carrito`,
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
 
-    const incrementar = () => {
-        if (count < disponible) {
-            setCount(count + 1);
-        } else {
-            Swal.fire({
-                title: 'Disponible',
-                text: 'Ha superado la cantidad disponible',
-                icon: 'error',
-                confirmButtonText: 'Aceptar'
-            })
-        }
-    };
-
-    const decrementar = () => {
-        if (count > 1) {
-            setCount(count - 1);
-        } else {
-            return false;
-        }
-    };
+        mostrarCarrito(producto, cantidad);
+      }
 
     return (
         <>
@@ -39,22 +34,19 @@ const Item = ({ stock, initial, onAdd, item }) => {
                     <Card.Body>
                         <Card.Title></Card.Title>
                         <Card.Text>
-                            <Link to={ `/producto/${producto.id}` }><span className="h3">{producto.title}</span></Link>
+                            <NavLink to={ `/producto/${producto.id}` }><span className="h3">{producto.title}</span></NavLink>
                             <p>Precio: $ {producto.price}</p>
                             <hr />
                             <div className="div-img-datos">
-                            <Link to={ `/producto/${producto.id}` }>
+                            <NavLink to={ `/producto/${producto.id}` }>
                             <img src={producto.pictureUrl} width="150" height="150" alt={producto.title} />
-                            </Link>
+                            </NavLink>
                             <br></br>
-                            <Button variant="primary" className="linea button" size="sm" onClick={decrementar}>-</Button>
-                            <Form.Control type="text" className="linea input" size="sm" value={count} readOnly="readonly" min="0" />
-                            <Button variant="primary" className="linea button" size="sm" onClick={incrementar}>+</Button>
+                            <div id="div-count" style={{'display':'inline','textAlign':'center'}}>
+                                <ItemCount initial={1} item={producto} onAdd={onAdd}/>
+                            </div>
                             <hr></hr>
-                            </div>
-                            <div className="d-grid gap-2">
-                                <Button variant="primary" onClick={() => onAdd(producto.id,producto.title, count)}>Agregar</Button>
-                            </div>
+                            </div>  
                         </Card.Text>
                     </Card.Body>
                 </Card>
