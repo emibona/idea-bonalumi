@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Container, Card, Row, Col, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
 
-const ItemCount = ({ initial, onAdd, item }) => {
+const ItemCount = ({ initial, item, onAdd }) => {
   const [count, setCount] = useState(parseInt(initial));
-  const [disponible, setDisponible] = useState(parseInt(item.stock));
-  const [producto, setProducto] = useState(item);
+  const [disponible] = useState(parseInt(item.stock));
+  //const [producto, setProducto] = useState(item);
 
   const incrementar = () => {
     if (count < disponible) {
@@ -35,7 +35,7 @@ const ItemCount = ({ initial, onAdd, item }) => {
       <Button variant="primary" className="linea button" size="sm" onClick={incrementar}>+</Button>
       <hr></hr>
       <div style={{'textAlign':'center'}}>
-        <Button variant="primary" className="button-detail" onClick={() => onAdd(producto, count)}>Agregar</Button>
+        <Button variant="primary" className="button-detail" onClick={() => onAdd(item, count)}>Agregar</Button>
       </div>
     </>
   );

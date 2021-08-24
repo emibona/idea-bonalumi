@@ -34,7 +34,7 @@ const ItemDetailContainer = () => {
             <Container>
                 <Row>
                     {ResultProductos.map((producto) =>
-                        <ItemDetail key={producto.id} item={producto} initial={1} />
+                        <ItemDetail key={producto.id} item={producto} />
                     )}
                 </Row>
             </Container>
