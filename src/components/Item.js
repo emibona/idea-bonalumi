@@ -1,32 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from 'react-router-dom';
-import { Card, Col, Button } from "react-bootstrap";
-import Swal from 'sweetalert2';
+import { Card, Col } from "react-bootstrap";
 import ItemCount from "./ItemCount";
+import { CartContext } from "../context/CartContext";
+import Swal from 'sweetalert2';
 
-const Item = ({ initial, mostrarCarrito, item }) => {
-    const [count, setCount] = useState(parseInt(initial));
-    const [disponible] = useState(parseInt(item.stock));
+const Item = ({ mostrarCarrito, item }) => {
     const [producto] = useState(item);
-    const [pedido, setPedido] = useState([
-        {producto : { },
-        cantidad : 0}
-    ]);
+    const { addItem } = useContext(CartContext);
 
     function onAdd(producto, cantidad) {
-        setPedido([
-            {producto : producto,
-            cantidad : cantidad}]);
+        addItem(producto,cantidad); //addItem este viene del context            
         Swal.fire({
-          title: "Item Agregado",
-          text: `Se agregaron ${cantidad} unid. de ${producto.title} a su carrito`,
-          icon: "success",
-          confirmButtonText: "Aceptar",
+            title: 'Item Agregado',
+            text: `Se agregaron ${cantidad} unid. de ${producto.title} a su carrito`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
         });
-
         mostrarCarrito(producto, cantidad);
-      }
-
+    };
+    
     return (
         <>
             <Col xs={3}>
@@ -43,8 +36,9 @@ const Item = ({ initial, mostrarCarrito, item }) => {
                             </NavLink>
                             <br></br>
                             <div id="div-count" style={{'display':'inline','textAlign':'center'}}>
-                                <ItemCount initial={1} item={producto} onAdd={onAdd}/>
+                                <ItemCount initial={1} item={producto} onAdd={onAdd} />
                             </div>
+                            <p>Disponibles: {producto.stock}</p>
                             <hr></hr>
                             </div>  
                         </Card.Text>

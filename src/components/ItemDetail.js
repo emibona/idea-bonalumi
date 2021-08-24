@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from 'react-router-dom';
 import ItemCount from "./ItemCount";
+import { CartContext } from "../context/CartContext";
 import { Card, Col, Button } from "react-bootstrap";
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-const ItemDetail = ({ initial, item }) => {   
-    const [count, setCount] = useState(parseInt(initial));
-    const [disponible] = useState(parseInt(item.stock));
+const ItemDetail = ({ item }) => {   
     const [producto] = useState(item); 
-    const [pedido, setPedido] = useState([
-        {producto : { },
-        cantidad : 0}
-    ]);
-
+    const { addItem } = useContext(CartContext);
+    
     function onAdd(producto, cantidad) {
-        console.log('producto',producto);
-        console.log('cantidad',cantidad);
-        setPedido([
-            {producto : producto,
-            cantidad : cantidad}]);       
+        console.log('itemDetail',producto);
+        addItem(producto,cantidad); //addItem este viene del context            
         Swal.fire({
             title: 'Item Agregado',
             text: `Se agregaron ${cantidad} unid. de ${producto.title} a su carrito`,
