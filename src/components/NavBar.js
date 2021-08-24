@@ -9,7 +9,7 @@ import CartWidget from './CartWidget';
 
 const NavBar = () => {
 
-  const { items } = useContext(CartContext);
+  const { items, cantidades } = useContext(CartContext);
 
   return (<div>
   <Navbar bg="light" expand="lg">
@@ -27,7 +27,7 @@ const NavBar = () => {
           <NavDropdown.Item><NavLink to={ `/categoria/3` }><FontAwesomeIcon icon={faTooth} /> Cuidado Dental</NavLink></NavDropdown.Item>
           <NavDropdown.Item><NavLink to={ `/categoria/4` }><FontAwesomeIcon icon={faMedkit} /> Botiquín</NavLink></NavDropdown.Item>
         </NavDropdown>
-        <Nav.Link><NavLink to={ `/carrito` }><FontAwesomeIcon icon={faShoppingCart} /> Mi Carrito { items.length > 0 ? items.length - 1 : "" }</NavLink></Nav.Link>
+        {cantidades > 0 && <Nav.Link><NavLink to={ `/carrito` }><FontAwesomeIcon icon={faShoppingCart} /> { cantidades }</NavLink></Nav.Link>}
         <Nav.Link><FontAwesomeIcon icon={faAddressBook} /> Contáctenos</Nav.Link>
       </Nav>
     </Navbar.Collapse>

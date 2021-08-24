@@ -1,9 +1,9 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext([]);
 
 export const CartProvider = ({ defaultValue = false, children }) => {
-  const [items, setItems] = useState([
+  /*const [items, setItems] = useState([
     {
       item: {id: 999,
             title: '',
@@ -11,7 +11,11 @@ export const CartProvider = ({ defaultValue = false, children }) => {
         price: 0},
       cantidad: 0,
     },
-  ]);
+  ]);*/
+
+  const [items, setItems] = useState([]);
+  const [cantidades, setCantidades] = useState(0);
+  const [importeTotal, setImporteTotal] = useState(0);
 
   const addItem = (producto, cantidad) => {
     const item = {
@@ -29,21 +33,39 @@ export const CartProvider = ({ defaultValue = false, children }) => {
       const newItems = [...items, item];
       setItems(newItems);
     }
-    
+    totalizar();
     //console.log(items);
   };
 
   const removeItem = (id) => {
-    const newItems = items.filter((item) => item.id !== id);
+    const newItems = items.filter((item) => item.item.id != id);
+    console.log(newItems);
     setItems(newItems);
+    totalizar();
   };
 
   const clearAllItems = () => {
     setItems([]);
+    totalizar();
   };
 
+  const totalizar = () => {
+    let auxcants = 0;
+    let auximps = 0;
+    items.map((item)=>{
+     auxcants = auxcants + item.cantidad;
+     auximps = auximps + (item.cantidad * item.item.price);      
+    });
+    setCantidades(auxcants);
+    setImporteTotal(auximps);
+  }
+
+  useEffect(() => {
+    totalizar();
+  }, [items]);
+
   return (
-    <CartContext.Provider value={{ items, addItem, removeItem, clearAllItems }}>
+    <CartContext.Provider value={{ items,cantidades,importeTotal, addItem, removeItem, clearAllItems }}>
       {children}
     </CartContext.Provider>
   );

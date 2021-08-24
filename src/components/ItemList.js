@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import Item from "./Item";
 import productos from "../api/Productos";
@@ -6,7 +6,6 @@ import { Container, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Loading from "./Loading";
-import { Fragment } from "react";
 
 const ItemList = () => {
   const { categoriaId } = useParams();

@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Form, Button, Card, Col } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Card, Col } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
 
 const ItemCart = ({ item, cantidad }) => {
-  console.log("producto", item);
+  //console.log("producto", item);
   const { removeItem } = useContext(CartContext);
   return (
     <>
@@ -13,7 +13,7 @@ const ItemCart = ({ item, cantidad }) => {
             <Card.Title></Card.Title>
             <Card.Text>
               <img src={item.pictureUrl} width="50" height="50" alt={item.title} />
-                {item.title} - cantidad: {cantidad} <Button>Eliminar</Button>             
+                {item.title} - Cant: {cantidad} - Unit. $ { item.price } - SubTotal: ${cantidad * item.price} <Button variant="danger" onClick={ ()=>removeItem(item.id)}>X</Button>             
             </Card.Text>
           </Card.Body>
         </Card>
