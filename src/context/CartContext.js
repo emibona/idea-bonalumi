@@ -32,6 +32,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
     if (!duplicado) {
       const newItems = [...items, item];
       setItems(newItems);
+      //totalizar();
     }
     totalizar();
     //console.log(items);
@@ -41,6 +42,15 @@ export const CartProvider = ({ defaultValue = false, children }) => {
     const newItems = items.filter((item) => item.item.id != id);
     console.log(newItems);
     setItems(newItems);
+    totalizar();
+  };
+
+  const removeItemCant = (id,cant) => {
+    items.map((itemCarrito) => {
+      if (itemCarrito.item.id === id) {
+        itemCarrito.cantidad -= cant;       
+      }
+    });
     totalizar();
   };
 
@@ -65,7 +75,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
   }, [items]);
 
   return (
-    <CartContext.Provider value={{ items,cantidades,importeTotal, addItem, removeItem, clearAllItems }}>
+    <CartContext.Provider value={{ items,cantidades,importeTotal, removeItemCant, addItem, removeItem, clearAllItems }}>
       {children}
     </CartContext.Provider>
   );

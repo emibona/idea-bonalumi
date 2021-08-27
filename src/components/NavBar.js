@@ -15,7 +15,11 @@ const NavBar = () => {
   <Navbar bg="light" expand="lg">
   <Container>
     <Navbar.Brand>
-    <NavLink to={ `/` }><CartWidget /></NavLink>
+    <NavLink to={ `/` }>
+        <div className="dot">
+            <FontAwesomeIcon icon={faShoppingCart} />
+        </div> PerfuBONA
+    </NavLink>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
@@ -27,8 +31,8 @@ const NavBar = () => {
           <NavDropdown.Item><NavLink to={ `/categoria/3` }><FontAwesomeIcon icon={faTooth} /> Cuidado Dental</NavLink></NavDropdown.Item>
           <NavDropdown.Item><NavLink to={ `/categoria/4` }><FontAwesomeIcon icon={faMedkit} /> Botiquín</NavLink></NavDropdown.Item>
         </NavDropdown>
-        {cantidades > 0 && <Nav.Link><NavLink to={ `/carrito` }><FontAwesomeIcon icon={faShoppingCart} /> { cantidades }</NavLink></Nav.Link>}
-        <Nav.Link><FontAwesomeIcon icon={faAddressBook} /> Contáctenos</Nav.Link>
+        {cantidades > 0 && <Nav.Link><NavLink to={ `/carrito` }><CartWidget cant={cantidades}/></NavLink></Nav.Link>}
+        <Nav.Link><NavLink to={ `/contacto` }><FontAwesomeIcon icon={faAddressBook} /> Contáctenos</NavLink></Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
