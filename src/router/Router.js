@@ -5,6 +5,7 @@ import ItemDetailContainer from "../components/ItemDetailContainer";
 import Carrito from "../components/Cart";
 import NotFound from "../components/NotFound";
 import NavBar from "../components/NavBar";
+import { Contactus } from "../components/Contactus";
 //import { Nav } from "react-bootstrap";
 const Router = () => {
     return (
@@ -14,7 +15,8 @@ const Router = () => {
                 <Route exact path="/" component={ItemListContainer} />
                 <Route path="/categoria/:categoriaId" component={ItemListContainer} />
                 <Route path="/producto/:productoId" component={ItemDetailContainer} />
-                <Route path="/carrito" component={Carrito} />    
+                <Route path="/carrito" component={Carrito} />  
+                <Route path="/contacto" component={Contactus} />    
                 <Route path="*" component={NotFound} />          
             </Switch>
         </BrowserRouter>

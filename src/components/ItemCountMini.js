@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Form, Button } from "react-bootstrap";
+import { CartContext } from "../context/CartContext";
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleDown,faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 
-const ItemCount = ({ initial, item, onAdd }) => {
+
+const ItemCountMini = ({ initial, item }) => {
   const [count, setCount] = useState(parseInt(initial));
   const [disponible] = useState(parseInt(item.stock));
+  const { addItem, removeItemCant } = useContext(CartContext);
  
   const incrementar = () => {
     if (count < disponible) {
       setCount(count + 1);
+      addItem(item,1);      
     } else {
       Swal.fire({
         title: 'Disponible',
@@ -22,6 +28,7 @@ const ItemCount = ({ initial, item, onAdd }) => {
   const decrementar = () => {
     if (count > 1) {
       setCount(count - 1);
+      removeItemCant(item.id,1);
     } else {
       return false;
     }
@@ -29,15 +36,11 @@ const ItemCount = ({ initial, item, onAdd }) => {
 
   return (
     <>
-      <Button variant="primary" className="linea button" size="sm" onClick={decrementar}>-</Button>
+      <FontAwesomeIcon icon={ faAngleDoubleDown } onClick={decrementar} size={'2x'}/>
       <Form.Control type="text" className="linea input" size="sm" value={count} readOnly="readonly" min="0" />
-      <Button variant="primary" className="linea button" size="sm" onClick={incrementar}>+</Button>
-      <hr></hr>
-      <div style={{'textAlign':'center'}}>
-        <Button variant="primary" className="button-detail" onClick={() => onAdd(item, count)}>Agregar</Button>
-      </div>
+      <FontAwesomeIcon icon={ faAngleDoubleUp } onClick={incrementar} size={'2x'}/>
     </>
   );
 };
 
-export default ItemCount;
+export default ItemCountMini;
