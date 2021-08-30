@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Router from './router/Router';
 import { CartProvider } from './context/CartContext';
 import './style.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (

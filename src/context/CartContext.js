@@ -23,7 +23,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
       cantidad: cantidad,
     };
     let duplicado = false;
-    items.map((itemCarrito) => {
+    items.map(itemCarrito => {
       if (itemCarrito.item.id === item.item.id) {
         itemCarrito.cantidad += item.cantidad;
         duplicado = true;
@@ -39,14 +39,14 @@ export const CartProvider = ({ defaultValue = false, children }) => {
   };
 
   const removeItem = (id) => {
-    const newItems = items.filter((item) => item.item.id != id);
-    console.log(newItems);
+    const newItems = items.filter((item) => item.item.id !== id);
+    //console.log(newItems);
     setItems(newItems);
     totalizar();
   };
 
   const removeItemCant = (id,cant) => {
-    items.map((itemCarrito) => {
+    items.map(itemCarrito => {
       if (itemCarrito.item.id === id) {
         itemCarrito.cantidad -= cant;       
       }
@@ -62,7 +62,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
   const totalizar = () => {
     let auxcants = 0;
     let auximps = 0;
-    items.map((item)=>{
+    items.map(item => {
      auxcants = auxcants + item.cantidad;
      auximps = auximps + (item.cantidad * item.item.price);      
     });
@@ -72,7 +72,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
 
   useEffect(() => {
     totalizar();
-  }, [items]);
+  },[items]);
 
   return (
     <CartContext.Provider value={{ items,cantidades,importeTotal, removeItemCant, addItem, removeItem, clearAllItems }}>

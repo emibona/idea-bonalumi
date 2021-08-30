@@ -1,5 +1,5 @@
 import React, { useState,useContext } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,7 +9,7 @@ import { faAngleDoubleDown,faAngleDoubleUp } from "@fortawesome/free-solid-svg-i
 const ItemCountMini = ({ initial, item }) => {
   const [count, setCount] = useState(parseInt(initial));
   const [disponible] = useState(parseInt(item.stock));
-  const { addItem, removeItemCant } = useContext(CartContext);
+  const { addItem, removeItem, removeItemCant } = useContext(CartContext);
  
   const incrementar = () => {
     if (count < disponible) {
@@ -30,15 +30,16 @@ const ItemCountMini = ({ initial, item }) => {
       setCount(count - 1);
       removeItemCant(item.id,1);
     } else {
+      removeItem(item.id);
       return false;
     }
   };
 
   return (
     <>
-      <FontAwesomeIcon icon={ faAngleDoubleDown } onClick={decrementar} size={'2x'}/>
+      <FontAwesomeIcon icon={ faAngleDoubleDown } onClick={decrementar} size={'2x'} cursor={'pointer'}/>
       <Form.Control type="text" className="linea input" size="sm" value={count} readOnly="readonly" min="0" />
-      <FontAwesomeIcon icon={ faAngleDoubleUp } onClick={incrementar} size={'2x'}/>
+      <FontAwesomeIcon icon={ faAngleDoubleUp } onClick={incrementar} size={'2x'} cursor={'pointer'}/>
     </>
   );
 };
