@@ -9,8 +9,7 @@ import CartWidget from './CartWidget';
 
 const NavBar = () => {
 
-  const { items, cantidades } = useContext(CartContext);
-
+  const { cantidades } = useContext(CartContext);
   return (<div>
   <Navbar bg="light" expand="lg">
   <Container>
