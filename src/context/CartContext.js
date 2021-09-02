@@ -1,21 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
+import { getFirestore } from "../firebase/firebase";
 
 export const CartContext = createContext([]);
 
 export const CartProvider = ({ defaultValue = false, children }) => {
-  /*const [items, setItems] = useState([
-    {
-      item: {id: 999,
-            title: '',
-            pictureUrl: 'https://www.coinsasalud.com.ar/images/dental.jpg', 
-        price: 0},
-      cantidad: 0,
-    },
-  ]);*/
-
   const [items, setItems] = useState([]);
   const [cantidades, setCantidades] = useState(0);
   const [importeTotal, setImporteTotal] = useState(0);
+  const [orderCreatedId, setOrderCreatedId] = useState(null);
 
   const addItem = (producto, cantidad) => {
     const item = {
@@ -23,7 +15,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
       cantidad: cantidad,
     };
     let duplicado = false;
-    items.map(itemCarrito => {
+    items.forEach(itemCarrito => {
       if (itemCarrito.item.id === item.item.id) {
         itemCarrito.cantidad += item.cantidad;
         duplicado = true;
@@ -34,19 +26,17 @@ export const CartProvider = ({ defaultValue = false, children }) => {
       setItems(newItems);
       //totalizar();
     }
-    totalizar();
-    //console.log(items);
+    totalizar();   
   };
 
   const removeItem = (id) => {
     const newItems = items.filter((item) => item.item.id !== id);
-    //console.log(newItems);
     setItems(newItems);
     totalizar();
   };
 
   const removeItemCant = (id,cant) => {
-    items.map(itemCarrito => {
+    items.forEach(itemCarrito => {
       if (itemCarrito.item.id === id) {
         itemCarrito.cantidad -= cant;       
       }
@@ -62,7 +52,7 @@ export const CartProvider = ({ defaultValue = false, children }) => {
   const totalizar = () => {
     let auxcants = 0;
     let auximps = 0;
-    items.map(item => {
+    items.forEach(item => {
      auxcants = auxcants + item.cantidad;
      auximps = auximps + (item.cantidad * item.item.price);      
     });
@@ -70,12 +60,54 @@ export const CartProvider = ({ defaultValue = false, children }) => {
     setImporteTotal(auximps);
   }
 
+  const finalizarCompra = () => {
+    const itemsOrder = items.map((item)=>{
+        return {
+          id: item.item.id,
+          title: item.item.title,
+          cant: item.cantidad,
+          price: item.item.price
+        }
+    })
+    const orden = {
+      date: new Date(),
+      buyer: {
+        name:'Emiliano',
+        email:'emibona@yahoo.com.ar',
+        phone: '158005297'
+      },
+      items: itemsOrder,
+      total: importeTotal
+    };
+    console.log(orden);
+    const db = getFirestore();
+    const orders = db.collection("orders");
+    // const docRef = db.collection("items").doc(items[0].item.id);
+    const batch = db.batch();
+    orders.add(orden)
+    .then(({id}) => {
+      setOrderCreatedId(id);
+      // docRef.update({
+        //   stock: items[0].item.stock - items[0].quantity,
+        // });
+        items.forEach((item) => {
+          const docRef = db.collection("items").doc(item.item.id);
+          batch.update(docRef, { stock: (item.item.stock - item.cantidad) });
+        });
+        batch.commit();
+        clearAllItems();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
   useEffect(() => {
     totalizar();
   },[items]);
 
   return (
-    <CartContext.Provider value={{ items,cantidades,importeTotal, removeItemCant, addItem, removeItem, clearAllItems }}>
+    <CartContext.Provider value={{ items,cantidades,importeTotal,orderCreatedId, removeItemCant, addItem, removeItem, clearAllItems, finalizarCompra }}>
       {children}
     </CartContext.Provider>
   );

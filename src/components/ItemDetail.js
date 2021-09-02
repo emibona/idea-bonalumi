@@ -46,7 +46,7 @@ const ItemDetail = ({ item }) => {
                                 <hr></hr>
                                 <Button variant="warning"><NavLink to={ `/` }><FontAwesomeIcon icon={faShoppingCart} />Seguir Comprando</NavLink></Button>
                                 <br></br><br></br>
-                                <NavLink to={'/carrito'}>Finalizar Compra</NavLink>
+                                <NavLink to={'/carrito'}>Ver Carrito</NavLink>
                                 <br></br>
                             </div>
                             <hr></hr>
