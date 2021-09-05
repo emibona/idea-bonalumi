@@ -1,44 +1,72 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { getFirestore, getFireAuth } from "../firebase/firebase";
+import firebase from "firebase/app";
+import { CartContext } from "../context/CartContext";
 
 export const LoginContext = createContext([]);
 
 export const LoginProvider = ({ defaultValue = false, children }) => {
-  //const [email, setEmail] = useState(null);
-  //const [password, setPassword] = useState(null);
+  const { buscarComprador, comprador, setComprador } = useContext(CartContext);
   const firebaseAuth = getFireAuth();
 
-  const registrar = async ({ buyer, email, password }) => {
-    console.log(email + "- " + password);
+  const registrar = async ({ nombre,telefono,email },password) => {    
+    let success = true;
+    let mensaje = '';
     await firebaseAuth
       .createUserWithEmailAndPassword(email, password)
+      .then((result)=>{
+        result.user.updateProfile({
+          displayName:nombre,
+          phoneNumber: telefono
+        })      
+        .catch((error) => {
+          console.log(error);
+          success = false;
+          mensaje = error.message;
+          return { success: success, mensaje: mensaje };
+        });
+      })
       .catch(function (error) {
         console.log(error);
         return { success: false, mensage: error.message };
       });
-    return { success: true, mensage: "Usuario registrado con éxito" };
-  };
-
-  const login = async (email, password) => {
-    let mensaje = '';
-    let success = true;
-
-    await firebaseAuth
-      .signInWithEmailAndPassword(email, password)
-      .catch(function (error) {  
+      const db = getFirestore();
+      const buyers = db.collection("buyers");
+      buyers.add({nombre:nombre,telefono:telefono,email:email}).then((response) => {
+        mensaje = 'Usuario creado exitosamente';
+        return { success: success, mensaje: mensaje };           
+      })
+      .catch((error) => {
+        console.log(error);
+        success = false;
         mensaje = error.message;
-        success = false;                
-      });      
-      return { success:success,mensaje:mensaje};
+        return { success: success, mensaje: mensaje };
+      });
+    
+  };
+  
+  const login = async (email, password) => {
+    await firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+          return firebase.auth().signInWithEmailAndPassword(email, password)
+        })
+        .catch((error) => {
+         throw error.message;
+        });      
   };
 
+  const usuarioActual = () => {
+    return firebaseAuth.currentUser;
+  }
+
+  
   const logout = async () => {
     await firebaseAuth.signOut();
 
   };
 
   return (
-    <LoginContext.Provider value={{ registrar, login, logout }}>
+    <LoginContext.Provider value={{ registrar, login, logout, usuarioActual }}>
       {children}
     </LoginContext.Provider>
   );

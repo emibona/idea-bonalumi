@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import { NavLink } from 'react-router-dom';
-import { Container, Nav, Navbar, NavDropdown, Alert} from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown, Alert, Button} from 'react-bootstrap';
 import { faHome, faAddressBook, faSoap, faSprayCan, faTooth, faMedkit, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CartWidget from './CartWidget';
-//import Login from './Login';
-
+import Login from './Login';
 
 const NavBar = () => {
 
-  const { cantidades,orderCreatedId } = useContext(CartContext);
+  const { cantidades,orderCreatedId, comprador, getCarritoStorage } = useContext(CartContext);
+
+  useEffect(() => {
+    if(cantidades<=0){
+    getCarritoStorage();}
+  }, [cantidades]);
+
   return (<div>
   <Navbar bg="light" expand="lg">
   <Container>
@@ -33,7 +38,7 @@ const NavBar = () => {
         </NavDropdown>
         {cantidades > 0 && <Nav.Link><NavLink to={ `/carrito` }><CartWidget cant={cantidades}/></NavLink></Nav.Link>}
         <Nav.Link><NavLink to={ `/contacto` }><FontAwesomeIcon icon={faAddressBook} /> Contáctenos</NavLink></Nav.Link>
-        
+        <Login />
       </Nav>
     </Navbar.Collapse>
   </Container>
