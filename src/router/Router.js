@@ -7,6 +7,7 @@ import NotFound from "../components/NotFound";
 import NavBar from "../components/NavBar";
 import { Contactus } from "../components/Contactus";
 import Register from "../components/Register";
+import PedidosList from "../components/PedidosList";
 
 
 //import { Nav } from "react-bootstrap";
@@ -20,7 +21,8 @@ const Router = () => {
                 <Route path="/producto/:productoId" component={ItemDetailContainer} />
                 <Route path="/carrito" component={Carrito} />  
                 <Route path="/contacto" component={Contactus} />
-                <Route path="/registrarse" component={Register} />    
+                <Route path="/registrarse" component={Register} />
+                <Route path="/mispedidos" component={PedidosList} />    
                 <Route path="*" component={NotFound} />          
             </Switch>
         </BrowserRouter>

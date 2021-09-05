@@ -5,9 +5,7 @@ import { CartContext } from "../context/CartContext";
 import { NavLink } from 'react-router-dom';
 
 const Cart = () => {
-  const { importeTotal,items,clearAllItems,finalizarCompra } = useContext(CartContext);
-  
-  
+  const { importeTotal,items,clearAllItems,finalizarCompra,getCarritoStorage } = useContext(CartContext);
   
   if(items.length<=0){
     return (
@@ -22,7 +20,7 @@ const Cart = () => {
   return (
     <div>
         <h3>Carrito de compras</h3>
-        <Button variant="success" onClick={()=>finalizarCompra()}>Comprar</Button>
+        <Button variant="success" onClick={()=>finalizarCompra()}>Comprar</Button>{" "}
         <Button variant="danger" onClick={()=>clearAllItems()}>Vaciar Carrito</Button>
         <Container>
         <Row>

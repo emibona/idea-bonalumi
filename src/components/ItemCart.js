@@ -12,7 +12,7 @@ const ItemCart = ({ item, cantidad }) => {
           <Card.Body>
             <Card.Title></Card.Title>
             <Card.Text>
-              <img src={item.pictureUrl} width="50" height="50" alt={item.title} />
+              <img src={item.pictureUrl} width="70" height="70" alt={item.title} />
                 {item.title} <ItemCountMini initial={cantidad} item={item}/> - Unit. $ { item.price } - SubTotal: ${cantidad * item.price} <Button variant="danger" onClick={ ()=>removeItem(item.id)}>X</Button>             
             </Card.Text>
           </Card.Body>

@@ -37,8 +37,8 @@ const ItemCountMini = ({ initial, item }) => {
 
   return (
     <>
-      <FontAwesomeIcon icon={ faAngleDoubleDown } onClick={decrementar} size={'2x'} cursor={'pointer'}/>
-      <Form.Control type="text" className="linea input" size="sm" value={count} readOnly="readonly" min="0" />
+      <FontAwesomeIcon icon={ faAngleDoubleDown } onClick={decrementar} size={'2x'} cursor={'pointer'}/>{" "}
+      <Form.Control type="text" className="linea input" size="sm" value={count} readOnly="readonly" min="0" />{" "}
       <FontAwesomeIcon icon={ faAngleDoubleUp } onClick={incrementar} size={'2x'} cursor={'pointer'}/>
     </>
   );
